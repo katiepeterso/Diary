@@ -16,6 +16,8 @@
 		AAB90EB81BA52C51002955F4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAB90EB61BA52C51002955F4 /* LaunchScreen.xib */; };
 		AAB90EC41BA52C51002955F4 /* DiaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90EC31BA52C51002955F4 /* DiaryTests.m */; };
 		AAB90ECF1BA52E5D002955F4 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90ECE1BA52E5D002955F4 /* CoreDataStack.m */; };
+		AAB90ED51BA5DEE1002955F4 /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90ED41BA5DEE1002955F4 /* EntryViewController.m */; };
+		AAB90ED81BA5E51A002955F4 /* EntryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90ED71BA5E51A002955F4 /* EntryListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,10 @@
 		AAB90EC31BA52C51002955F4 /* DiaryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiaryTests.m; sourceTree = "<group>"; };
 		AAB90ECD1BA52E5D002955F4 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		AAB90ECE1BA52E5D002955F4 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
+		AAB90ED31BA5DEE1002955F4 /* EntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryViewController.h; sourceTree = "<group>"; };
+		AAB90ED41BA5DEE1002955F4 /* EntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryViewController.m; sourceTree = "<group>"; };
+		AAB90ED61BA5E51A002955F4 /* EntryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryListViewController.h; sourceTree = "<group>"; };
+		AAB90ED71BA5E51A002955F4 /* EntryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,10 @@
 				AAB90ECE1BA52E5D002955F4 /* CoreDataStack.m */,
 				AAB90EAE1BA52C51002955F4 /* ViewController.h */,
 				AAB90EAF1BA52C51002955F4 /* ViewController.m */,
+				AAB90ED31BA5DEE1002955F4 /* EntryViewController.h */,
+				AAB90ED41BA5DEE1002955F4 /* EntryViewController.m */,
+				AAB90ED61BA5E51A002955F4 /* EntryListViewController.h */,
+				AAB90ED71BA5E51A002955F4 /* EntryListViewController.m */,
 				AAB90EB11BA52C51002955F4 /* Main.storyboard */,
 				AAB90EB41BA52C51002955F4 /* Images.xcassets */,
 				AAB90EB61BA52C51002955F4 /* LaunchScreen.xib */,
@@ -228,9 +238,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAB90ECF1BA52E5D002955F4 /* CoreDataStack.m in Sources */,
+				AAB90ED51BA5DEE1002955F4 /* EntryViewController.m in Sources */,
 				AAB90EAD1BA52C51002955F4 /* Diary.xcdatamodeld in Sources */,
 				AAB90EAA1BA52C51002955F4 /* AppDelegate.m in Sources */,
 				AAB90EB01BA52C51002955F4 /* ViewController.m in Sources */,
+				AAB90ED81BA5E51A002955F4 /* EntryListViewController.m in Sources */,
 				AAB90EA71BA52C51002955F4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

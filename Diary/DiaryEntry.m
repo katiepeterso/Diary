@@ -23,4 +23,13 @@ typedef NS_ENUM(NSUInteger, DiaryEntryMood) {
 @dynamic mood;
 @dynamic location;
 
+-(NSString *)sectionName {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.date];
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"MMM yyyy"];
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 @end
