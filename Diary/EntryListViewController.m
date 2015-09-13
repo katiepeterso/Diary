@@ -10,6 +10,7 @@
 #import "CoreDataStack.h"
 #import "DiaryEntry.h"
 #import "EntryViewController.h"
+#import "EntryCell.h"
 
 @interface EntryListViewController () <NSFetchedResultsControllerDelegate>
 
@@ -64,11 +65,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    EntryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     DiaryEntry *entry = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = entry.body;
+    [cell configureCellForEntry:entry];
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DiaryEntry *entry = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    return [EntryCell heightForEntry:entry];
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

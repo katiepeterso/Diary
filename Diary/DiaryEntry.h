@@ -18,6 +18,14 @@
 @property (nonatomic) int16_t mood;
 @property (nonatomic, retain) NSString * location;
 
+
+typedef NS_ENUM(NSUInteger, DiaryEntryMood) {
+    DiaryEntryMoodGood = 0,
+    DiaryEntryMoodAverage = 1,
+    DiaryEntryMoodBad = 2,
+};
+
+
 @property (nonatomic, readonly) NSString *sectionName;
 
 @end
