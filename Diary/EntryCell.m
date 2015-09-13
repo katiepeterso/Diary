@@ -46,7 +46,7 @@
     self.locationLabel.text = entry.location;
     
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    [dateFormatter setDateFormat:@"EEEE, MMMMM d yyyy"];
+    [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:entry.date];
     self.dateLabel.text = [dateFormatter stringFromDate:date];
     
@@ -67,5 +67,7 @@
         self.moodImageView.image = [UIImage imageNamed:@"icn_bad"];
     }
 }
+
+
 
 @end
