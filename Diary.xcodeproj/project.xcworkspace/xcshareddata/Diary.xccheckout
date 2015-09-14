@@ -10,22 +10,26 @@
 	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>8E81CDBE3ACA94328206743891CAA44489DD14C5</key>
+		<string>https://github.com/katiepeterso/Diary.git</string>
 		<key>DC22E5519872F76C77D53A43655886FBD8E7A803</key>
 		<string>https://github.com/katiepeterso/lighthouse.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Diary/Diary.xcodeproj/project.xcworkspace</string>
+	<string>Diary.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>8E81CDBE3ACA94328206743891CAA44489DD14C5</key>
+		<string>../..</string>
 		<key>DC22E5519872F76C77D53A43655886FBD8E7A803</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/katiepeterso/lighthouse.git</string>
+	<string>https://github.com/katiepeterso/Diary.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>DC22E5519872F76C77D53A43655886FBD8E7A803</string>
+	<string>8E81CDBE3ACA94328206743891CAA44489DD14C5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -34,7 +38,15 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>DC22E5519872F76C77D53A43655886FBD8E7A803</string>
 			<key>IDESourceControlWCCName</key>
-			<string>lighthouse</string>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8E81CDBE3ACA94328206743891CAA44489DD14C5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Diary</string>
 		</dict>
 	</array>
 </dict>

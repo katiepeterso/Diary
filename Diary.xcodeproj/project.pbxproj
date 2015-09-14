@@ -20,6 +20,8 @@
 		AAB90ED81BA5E51A002955F4 /* EntryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90ED71BA5E51A002955F4 /* EntryListViewController.m */; };
 		AAB90EDB1BA6202F002955F4 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90EDA1BA6202F002955F4 /* NavigationController.m */; };
 		AAB90EDE1BA624B1002955F4 /* EntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB90EDD1BA624B1002955F4 /* EntryCell.m */; };
+		AAB90F151BA678E5002955F4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB90F141BA678E5002955F4 /* QuartzCore.framework */; };
+		AAB90F171BA67B3D002955F4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB90F161BA67B3D002955F4 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		AAB90EDA1BA6202F002955F4 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		AAB90EDC1BA624B1002955F4 /* EntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryCell.h; sourceTree = "<group>"; };
 		AAB90EDD1BA624B1002955F4 /* EntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryCell.m; sourceTree = "<group>"; };
+		AAB90F141BA678E5002955F4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AAB90F161BA67B3D002955F4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAB90F171BA67B3D002955F4 /* CoreLocation.framework in Frameworks */,
+				AAB90F151BA678E5002955F4 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +86,8 @@
 		AAB90E981BA52C51002955F4 = {
 			isa = PBXGroup;
 			children = (
+				AAB90F161BA67B3D002955F4 /* CoreLocation.framework */,
+				AAB90F141BA678E5002955F4 /* QuartzCore.framework */,
 				AAB90EA31BA52C51002955F4 /* Diary */,
 				AAB90EC01BA52C51002955F4 /* DiaryTests */,
 				AAB90EA21BA52C51002955F4 /* Products */,

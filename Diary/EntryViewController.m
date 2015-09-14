@@ -9,8 +9,12 @@
 #import "EntryViewController.h"
 #import "DiaryEntry.h"
 #import "CoreDataStack.h"
+@import CoreLocation;
 
-@interface EntryViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface EntryViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate>
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) NSString *location;
 
 @property (nonatomic, strong) UIImage *pickedImage;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -35,6 +39,7 @@
         self.textView.text = self.entry.body;
         self.pickedMood = self.entry.mood;
         date = [NSDate dateWithTimeIntervalSince1970:self.entry.date];
+        [self loadLocation];
     }
     else {
         self.pickedMood = DiaryEntryMoodGood;
@@ -46,6 +51,26 @@
     self.dateLabel.text = [dateFormatter stringFromDate:date];
     
     self.textView.inputAccessoryView = self.accessoryView;
+    self.imageButton.layer.cornerRadius = CGRectGetWidth(self.imageButton.frame)/2.0f;
+}
+
+-(void)loadLocation {
+    self.locationManager = [CLLocationManager new];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = 1000;
+    
+    [self.locationManager startUpdatingLocation];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    [self.locationManager stopUpdatingLocation];
+    
+    CLLocation *location = [locations firstObject];
+    CLGeocoder *geocoder = [CLGeocoder new];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark *placemark = [placemarks firstObject];
+        self.location = placemark.name;
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -161,6 +186,7 @@
     entry.body = self.textView.text;
     entry.date = [[NSDate date] timeIntervalSince1970];
     entry.image = UIImageJPEGRepresentation(self.pickedImage, 0.75);
+    entry.location = self.location;
     [coreDataStack saveContext];
 }
 
