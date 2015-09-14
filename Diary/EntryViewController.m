@@ -10,15 +10,17 @@
 #import "DiaryEntry.h"
 #import "CoreDataStack.h"
 
-@interface EntryViewController ()
+@interface EntryViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (nonatomic, strong) UIImage *pickedImage;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (assign, nonatomic) enum DiaryEntryMood pickedMood;
 @property (weak, nonatomic) IBOutlet UIButton *badButton;
 @property (weak, nonatomic) IBOutlet UIButton *averageButton;
 @property (weak, nonatomic) IBOutlet UIButton *goodButton;
 @property (strong, nonatomic) IBOutlet UIView *accessoryView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *imageButton;
 
 @end
 
@@ -30,7 +32,7 @@
     NSDate *date;
     
     if (self.entry != nil) {
-        self.textField.text = self.entry.body;
+        self.textView.text = self.entry.body;
         self.pickedMood = self.entry.mood;
         date = [NSDate dateWithTimeIntervalSince1970:self.entry.date];
     }
@@ -43,7 +45,13 @@
     [dateFormatter setDateFormat:@"EEEE MMMM d, yyyy"];
     self.dateLabel.text = [dateFormatter stringFromDate:date];
     
-    self.textField.inputAccessoryView = self.accessoryView;
+    self.textView.inputAccessoryView = self.accessoryView;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.textView becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,11 +64,54 @@
 }
 
 -(void)updateDiaryEntry {
-    self.entry = self.textField.text;
+    self.entry = self.textView.text;
+    self.entry.image = UIImageJPEGRepresentation(self.pickedImage, 0.75);
     
     CoreDataStack *coreDataStack = [CoreDataStack defaultStack];
     [coreDataStack saveContext];
 }
+
+-(void)promptForSource {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Image Source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Roll", nil];
+    
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        if (buttonIndex != actionSheet.firstOtherButtonIndex) {
+            [self promptForCamera];
+        }
+        else {
+            [self promptForPhotoRoll];
+        }
+    }
+}
+
+-(void)promptForCamera {
+    UIImagePickerController *controller = [UIImagePickerController new];
+    controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+    controller.delegate = self;
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+-(void)promptForPhotoRoll {
+    UIImagePickerController *controller = [UIImagePickerController new];
+    controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    controller.delegate = self;
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    self.pickedImage = image;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 -(void)setPickedMood:(enum DiaryEntryMood)pickedMood {
     self.pickedMood = pickedMood;
@@ -82,6 +133,16 @@
     }
 }
 
+-(void)setPickedImage:(UIImage *)pickedImage {
+    self.pickedImage = pickedImage;
+    if (pickedImage == nil) {
+        [self.imageButton setImage:[UIImage imageNamed:@"icn_noimage"] forState:UIControlStateNormal];
+    }
+    else {
+        [self.imageButton setImage:pickedImage forState:UIControlStateNormal];
+    }
+}
+
 - (IBAction)doneWasPressed:(id)sender {
     if (self.entry != nil) {
         [self updateDiaryEntry];
@@ -97,8 +158,9 @@
 -(void)insertDiaryEntry {
     CoreDataStack *coreDataStack = [CoreDataStack defaultStack];
     DiaryEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"DiaryEntry" inManagedObjectContext:coreDataStack.managedObjectContext];
-    entry.body = self.textField.text;
+    entry.body = self.textView.text;
     entry.date = [[NSDate date] timeIntervalSince1970];
+    entry.image = UIImageJPEGRepresentation(self.pickedImage, 0.75);
     [coreDataStack saveContext];
 }
 
@@ -112,6 +174,15 @@
 
 - (IBAction)goodWasPressed:(id)sender {
     self.pickedMood = DiaryEntryMoodGood;
+}
+
+- (IBAction)imageButtonWasPressed:(id)sender {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [self promptForSource];
+    }
+    else {
+        [self promptForPhotoRoll];
+    }
 }
 
 @end
